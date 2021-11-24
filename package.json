@@ -1,0 +1,21 @@
+{
+  "name": "Books_With_Middleware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vinay2603/Books_With_Middleware.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vinay2603/Books_With_Middleware/issues"
+  },
+  "homepage": "https://github.com/Vinay2603/Books_With_Middleware#readme"
+}
