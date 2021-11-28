@@ -3,22 +3,15 @@ const express = require("express")
 const books = require("./books.json")
 const app = express()
 
-//app.use(express.json())  
+function logger(req,res,next){
+    req.bb= {"api_requested_by":"vinay"};
+    next();
+}
+
+app.use(express.json())  
 
 //logger not working 
 
-const logger = (permission)=>{
-    return (req,res)=>{
-       const originalSendFunc = res.send.bind(res)
-       res.send = function(body){
-           body.name = "vinay"
-           console.log(body)
-           return originalSendFunc(body)
-       }
-       next()
-    }
-}
-//app.use(logger)
 /*
 const authorise = (permission) => {
     return (req, res, next) => {
@@ -37,8 +30,8 @@ const authorise = (permission) => {
 
 
 app.get("/",logger,(req,res)=>{
-    console.log("svjs")
-    res.send({books})
+   req.bb.books = books;
+    res.send(req.bb)
 })
 
 
@@ -54,9 +47,12 @@ app.post("/books",(req,res)=>{
 
 
 
-app.get("/books/:author",(req,res)=>{
+app.get("/books/:author",logger,(req,res)=>{
     const newBook = books.filter((book)=>   req.params.author == book.author   )
-    res.send(newBook)
+   req.bb.book = newBook
+   req.bb["api_requested_by"] = newBook[0].author
+   
+    res.send(req.bb)
 })
 
 
